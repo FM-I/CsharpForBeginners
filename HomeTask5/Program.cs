@@ -5,17 +5,9 @@ namespace HomeTask5
 {
     class Program
     {
-        static void Main(string[] args)
+                static void Main(string[] args)
         {
-            //string[] names = new string[3] { "Роман", "Максим", "Александр" };
-            //string[] phones = new string[3] { "9991110001", "9991110002", "9991110003" };
-            //byte[] ages = new byte[3] { 24, 23, 27 };
-            //int entitiesCount = names.Length;
-            List<Contact> contacts = new List<Contact>(3);
-            contacts.Add(new Contact("Роман", "9991110001", 24));
-            contacts.Add(new Contact("Максим", "9991110002", 23));
-            contacts.Add(new Contact("Александр", "9991110003", 27));
-
+           ContactList _contactList = new ContactList(100);
             while (true)
             {
                 Console.WriteLine("Выберите действие:");
@@ -24,80 +16,37 @@ namespace HomeTask5
                 Console.WriteLine("для удаления записи в кнжику нажмите (3)");
                 Console.WriteLine("длы выхода нажмите (0)");
 
-                string userAnswer = Console.ReadLine();
+                string operation = Console.ReadLine();
 
-                switch (userAnswer)
+                switch (operation)
                 {
-                    case "1":
-                        DisplayNotes(contacts);
-                        break;
-                    case "2":
-                        AddNote(contacts);
+                    case Operations.SHOW_CONTACTS_LIST:
+                        Operations.PrintContacts(_contactList);
                         break;
 
-                    case "3":                                                                           //удаление записи из книжки
-                        RemoveNote(contacts);
+                    case Operations.ADD_NEW_CONTACT:
+                        Operations.CreateNewContact(_contactList);
                         break;
 
-                    case "0": //выход
+                    case Operations.REMOVE_CONTACT:
+                        Operations.RemoveContact(_contactList);
+                        break;
+
+                    case Operations.EXIT: //выход
                         return;
 
                     default:
                         Console.WriteLine("Вы нажали неизветсную цифру");
-
                         break;
                 }
+
+                Console.WriteLine("Нажмите любую клавишу для продолжения");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
-        static void DisplayNotes(List<Contact> contacts)
-        {
-            Console.WriteLine("Имя - номер телефона - возраст");
-            contacts.ForEach(delegate (Contact contact)
-            {
-                contact.Get();
-            });
-
-        }
-        static void AddNote(List<Contact> contacts)
-        {
-            Contact contact = new Contact();
-            contact.Add();
-            contacts.Add(contact);
-        }
-        static void RemoveNote(List<Contact> contacts)
-        {
-            bool shouldRemove = true;
-
-            do
-            {
-                Console.WriteLine("Порядковый номер - Имя - номер телефона - возраст");
-                int entitiesCount = 1;
-                contacts.ForEach(delegate (Contact contact)
-                {
-                    Console.Write(entitiesCount + " - ");
-                    contact.Get();
-                    entitiesCount++;
-                });
-
-                Console.WriteLine("Для удаления записи введите порядковый номер");
-
-                int i = Int32.Parse(Console.ReadLine());
-
-                if (i<entitiesCount)
-                { 
-                contacts.RemoveAt(i - 1);
-
-                Console.WriteLine("Вы успешно удалили запись");
-
-                    shouldRemove = false;
-                }
-                else 
-                {
-                    Console.WriteLine("Вы ввели недопустимый порядковый номер, попробуйте еще раз");
-                }
-
-            } while (shouldRemove);
-        }
-
+        
+        
+        
     }
 }
