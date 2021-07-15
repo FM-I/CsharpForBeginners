@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.View;
+using System.Net.Http;
 
 namespace Shop
 {
@@ -6,8 +7,7 @@ namespace Shop
     {
         static void Main(string[] args)
         {
-            Shop shop = new Shop();
-            Shop.Open();
+            Menu.Show();
         }
     }
 }

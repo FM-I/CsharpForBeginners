@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Shop
 {
-    class ShopItemsList<T> : IGetList, IEditable, IAdd<T> where T : ShopItem
+    public class ShopItemsList<T> : IGetList<T>, IEditable, IAdd<T> where T : ShopItem
     {
         private List<T> _shopItemList;
 
@@ -30,12 +28,9 @@ namespace Shop
         {
 
         }
-        public void GetList()
+        public List<T> GetList()
         {
-            foreach (T shopItem in _shopItemList)
-            {
-                shopItem.GetInfo();
-            }
+            return _shopItemList;
         }
 
         public ShopItem GetShopItem(int id)

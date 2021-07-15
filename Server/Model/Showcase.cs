@@ -4,16 +4,14 @@ using System.Text;
 
 namespace Shop
 {
-    class Product : ShopItem
+    class Showcase : ShopItem
     {
-        public Product(string name, int size) : base(name, size)
+        public DateTime CreateDate { get; }
+        public DateTime RemoveDate { get; set; }
+
+        public Showcase(string name, int size) : base(name, size)
         {
-
-        }
-
-        public Product()
-        {
-
+            CreateDate = DateTime.Now;
         }
 
         public override void GetInfo()

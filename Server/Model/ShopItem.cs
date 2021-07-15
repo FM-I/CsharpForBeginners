@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Shop
+﻿namespace Shop
 {
-    class ShopItem
+    public class ShopItem
     {
         public int Id { get; set; }
         public int Size { get; set; }

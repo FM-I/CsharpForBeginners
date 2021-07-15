@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Shop
 {
-    class ProductOnShowcaseList : IPlaseProduct, IGetList
+    class ProductOnShowcaseList : IPlaseProduct, IGetList<ProductsOnShowcase>
     {
         private List<ProductsOnShowcase> _productsOnShowcases;
         private int _count = 0;
@@ -20,12 +18,14 @@ namespace Shop
             productsOnShowcase.Id = _count;
             _productsOnShowcases.Add(productsOnShowcase);
         }
-        public void GetList()
+        public List<ProductsOnShowcase> GetList()
         {
             foreach (ProductsOnShowcase productsOnShowcase in _productsOnShowcases)
             {
                 productsOnShowcase.GetInfo();
             }
+
+            return null;
         }
         public int GetCount()
         {
